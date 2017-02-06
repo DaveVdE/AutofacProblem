@@ -30,8 +30,12 @@ namespace ConsoleApp2
         {
             var configuration = new MapperConfiguration(configure =>
             {
+                // This throws:
                 //configure.CreateMap(typeof(ImmutableDictionary<,>), typeof(IDictionary<,>)).ConvertUsing(typeof(ImmutableDictionaryConverter<,>));
+
+                // But this works:
                 configure.CreateMap<ImmutableDictionary<string, string>, IDictionary<string, string>>().ConvertUsing<ImmutableDictionaryConverter<string, string>>();
+
                 configure.CreateMap<Model, Dto>();
             });
 
