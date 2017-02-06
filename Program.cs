@@ -30,7 +30,8 @@ namespace ConsoleApp2
         {
             var configuration = new MapperConfiguration(configure =>
             {
-                configure.CreateMap(typeof(ImmutableDictionary<,>), typeof(IDictionary<,>)).ConvertUsing(typeof(ImmutableDictionaryConverter<,>));
+                //configure.CreateMap(typeof(ImmutableDictionary<,>), typeof(IDictionary<,>)).ConvertUsing(typeof(ImmutableDictionaryConverter<,>));
+                configure.CreateMap<ImmutableDictionary<string, string>, IDictionary<string, string>>().ConvertUsing<ImmutableDictionaryConverter<string, string>>();
                 configure.CreateMap<Model, Dto>();
             });
 
@@ -43,7 +44,7 @@ namespace ConsoleApp2
 
             var dto = mapper.Map<Dto>(model);
 
-            Console.WriteLine($"Boo: {dto.Demo["Boolean"]}");
+            Console.WriteLine($"Boo: {dto.Demo["Boo"]}");
         }
     }
 }
